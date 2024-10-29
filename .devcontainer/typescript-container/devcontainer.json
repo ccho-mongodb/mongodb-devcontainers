@@ -1,0 +1,19 @@
+{
+	"name": "Node.js & TypeScript and MongoDB Development Environment",
+	"dockerComposeFile": "../docker-compose.yml",
+	"service": "typescript",
+	"workspaceFolder": "/workspace/typescript",
+	"forwardPorts": [27017],
+	"postCreateCommand": "sudo chown -R vscode:vscode /workspace/typescript && npm install",
+	"customizations": {
+	  "vscode": {
+		"extensions": [
+		  "dbaeumer.vscode-eslint",
+		  "esbenp.prettier-vscode",
+		  "ms-vscode.vscode-typescript-next",
+		  "mongodb.mongodb-vscode"
+		]
+	  }
+	},
+	"remoteUser": "vscode"
+  }
