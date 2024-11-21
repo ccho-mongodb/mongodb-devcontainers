@@ -4,7 +4,7 @@
 	"service": "typescript",
 	"workspaceFolder": "/workspace/typescript",
 	"forwardPorts": [27017],
-	"postCreateCommand": "sudo chown -R vscode:vscode /workspace/typescript && npm install",
+	"postCreateCommand": "sudo chown -R vscode:vscode /workspace/ && npm install",
 	"customizations": {
 	  "vscode": {
 		"extensions": [

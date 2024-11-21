@@ -2,7 +2,7 @@
   "name": "Python and MongoDB Development Environment",
   "dockerComposeFile": "../docker-compose.yml",
   "service": "python",
-  "workspaceFolder": "/workspace/python",
+  "workspaceFolder": "/workspace/python/",
   "forwardPorts": [27017],
   "postCreateCommand": "pip install --user -r requirements.txt",
   "customizations": {

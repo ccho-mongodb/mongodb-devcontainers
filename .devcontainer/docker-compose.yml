@@ -29,10 +29,10 @@ services:
   init-db:
     build: 
       context: .
-      dockerfile: Dockerfile.mongodb
-    volumes:
-      - ../sample_data:/workspace/sample_data:ro
-    command: /bin/sh -c "sleep 10 && /workspace/load_sample_data.sh"
+      dockerfile: Dockerfile.mongodb-data
+ #   volumes:
+ #     - ../sample_data:/workspace/sample_data:ro
+ #   command: /bin/sh -c "sleep 10 && /workspace/load_sample_data.sh"
     depends_on:
       - mongo-database
 

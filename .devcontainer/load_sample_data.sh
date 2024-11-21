@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e # exit on failure
 set -x # print commands
@@ -22,7 +22,7 @@ import_data() {
     local collection="${filename%.*}"
     
     echo "Importing $filename into database $db_name, collection $collection..."
-    if mongoimport --host localhost --db "$db_name" --collection "$collection" --file "$file"; then
+    if mongoimport --uri "mongodb://mongo-database:27017" --db "$db_name" --collection "$collection" --file="$file" --verbose; then
         echo "Successfully imported $filename into $db_name.$collection"
     else
         echo "Failed to import $filename into $db_name.$collection"
@@ -32,14 +32,10 @@ import_data() {
 
 # Run import_data() on each file in the directory
 find "$SAMPLE_DATA_DIR" -type d | while read -r dir; do
-    # Skip the root sample_data directory
-    if [ "$dir" = "$SAMPLE_DATA_DIR" ]; then
-        continue
-    fi
 
     # Get the database name from the directory name
     db_name=$(basename "$dir")
-    echo "Processing database: $db_name"
+    echo "Processing directory: $db_name"
 
     # Import all JSON files in this directory
     for file in "$dir"/*.json; do
@@ -51,4 +47,4 @@ find "$SAMPLE_DATA_DIR" -type d | while read -r dir; do
     done
 done
 
-echo "Sample data import process completed."
+echo "Sample data import completed."

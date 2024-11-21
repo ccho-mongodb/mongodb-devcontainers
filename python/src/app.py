@@ -4,7 +4,7 @@ from pymongo import MongoClient
 app = Flask(__name__)
 
 def get_mongodb_info():
-    client = MongoClient('mongodb://db:27017/')
+    client = MongoClient('mongodb://mongo-database:27017/')
     try:
         # Test the connection
         client.admin.command('ismaster')

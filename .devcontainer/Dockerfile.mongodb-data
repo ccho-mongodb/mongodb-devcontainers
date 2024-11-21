@@ -1,0 +1,18 @@
+FROM alpine:latest
+
+# Install mongoimport from the mongodb-tools package
+RUN apk update && apk --no-cache add mongodb-tools
+
+ARG USER_DIR=/workspace
+
+RUN mkdir -p $USER_DIR
+
+COPY --chmod=0755 load_sample_data.sh $USER_DIR
+#RUN chmod +x $USER_DIR/load_sample_data.sh
+
+RUN mkdir -p $USER_DIR/sample_data
+ADD sample_data $USER_DIR/sample_data
+
+#WORKDIR $USER_DIR
+
+ENTRYPOINT "/workspace/load_sample_data.sh"

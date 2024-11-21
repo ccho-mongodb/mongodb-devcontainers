@@ -1,6 +1,0 @@
-FROM alpine:latest
-
-# Install mongoimport from the mongodb-tools package
-WORKDIR /usr/local/app
-
-RUN apk --no-cache add mongodb-tools
