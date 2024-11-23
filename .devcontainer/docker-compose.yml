@@ -20,6 +20,16 @@ services:
     depends_on:
       - mongo-database
 
+  golang:
+    build:
+      context: .
+      dockerfile: Dockerfile.golang
+    volumes:
+      - ../golang:/workspace/golang:cached
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    depends_on:
+      - mongo-database
+
   mongo-database:
     image: mongodb/mongodb-community-server:latest
     restart: unless-stopped

@@ -1,0 +1,16 @@
+{
+    "name": "Golang and MongoDB Development Environment",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "golang",
+    "workspaceFolder": "/workspace/golang/",
+    "forwardPorts": [27017],
+    "customizations": {
+      "vscode": {
+        "extensions": [
+            "mongodb.mongodb-vscode",
+            "golang.go"
+        ]
+      }
+    },
+    "remoteUser": "vscode"
+  }
