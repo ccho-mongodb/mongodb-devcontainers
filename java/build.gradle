@@ -1,0 +1,25 @@
+plugins {
+    id 'application'
+}
+
+application {
+    mainClass = 'org.chrischo.example.App' 
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.mongodb:mongodb-driver-sync:5.2.0'
+}
+
+test {
+    useJUnitPlatform()
+}

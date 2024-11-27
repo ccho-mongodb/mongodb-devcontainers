@@ -1,33 +1,19 @@
-from flask import Flask, jsonify
 from pymongo import MongoClient
 
-app = Flask(__name__)
+uri = "mongodb://mongo-database:27017"
+client = MongoClient(uri)
 
-def get_mongodb_info():
-    client = MongoClient('mongodb://mongo-database:27017/')
-    try:
-        # Test the connection
-        client.admin.command('ismaster')
-        
-        # Get list of databases
-        databases = client.list_database_names()
-        
-        return {
-            "status": "Connected",
-            "databases": databases
-        }
-    except Exception as e:
-        return {
-            "status": "Failed to connect",
-            "error": str(e)
-        }
-    finally:
-        client.close()
+try:
+    database = client.get_database("sample_data")
+    movies = database.get_collection("movies")
 
-@app.route('/')
-def mongodb_status():
-    info = get_mongodb_info()
-    return jsonify(info)
+    # Query for a movie that has the title 'Back to the Future'
+    query = { "title": "Back to the Future" }
+    movie = movies.find_one(query)
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=3001)
+    print(movie)
+
+    client.close()
+
+except Exception as e:
+    raise Exception("Unable to find the document due to the following error: ", e)

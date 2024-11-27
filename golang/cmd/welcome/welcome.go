@@ -23,7 +23,7 @@ func main() {
 		}
 	}()
 
-	coll := client.Database("sample_mflix").Collection("movies")
+	coll := client.Database("sample_data").Collection("movies")
 	title := "Back to the Future"
 
 	var result bson.M

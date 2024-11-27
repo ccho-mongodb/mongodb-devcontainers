@@ -1,0 +1,24 @@
+{
+    "name": "Java and MongoDB Development Environment",
+    "dockerComposeFile": "../docker-compose.yml",
+    "features": {
+      "ghcr.io/devcontainers/features/java:1": {
+          "version": "17",
+          "installGradle": true
+      }
+    },
+    "service": "java",
+    "workspaceFolder": "/workspace/java/",
+    "forwardPorts": [27017],
+    "customizations": {
+      "vscode": {
+        "extensions": [
+            "mongodb.mongodb-vscode",
+            "vscjava.vscode-java-pack",
+            "vscjava.vscode-gradle"
+        ]
+      }
+    },
+    "postCreateCommand": "gradle wrapper && ./gradlew build",
+    "remoteUser": "vscode"
+  }
