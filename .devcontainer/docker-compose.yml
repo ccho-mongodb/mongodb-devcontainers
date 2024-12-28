@@ -40,6 +40,16 @@ services:
     depends_on:
       - mongo-database
 
+  ruby:
+    build:
+      context: .
+      dockerfile: Dockerfile.ruby
+    volumes:
+      - ../ruby:/workspace/ruby:cached
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    depends_on:
+      - mongo-database
+
   mongo-database:
     image: mongodb/mongodb-community-server:latest
     restart: unless-stopped

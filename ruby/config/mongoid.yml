@@ -1,0 +1,7 @@
+development:
+  clients:
+    # Default client configuration
+    default:
+      database: sample_data
+      hosts:
+        - mongo-database:27017

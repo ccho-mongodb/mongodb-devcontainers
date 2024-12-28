@@ -1,0 +1,16 @@
+{
+  "name": "Ruby and MongoDB Development Environment",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "ruby",
+  "workspaceFolder": "/workspace/ruby/",
+  "forwardPorts": [27017],
+  "postCreateCommand": "",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "mongodb.mongodb-vscode",
+      ]
+    }
+  },
+  "remoteUser": "vscode"
+}
