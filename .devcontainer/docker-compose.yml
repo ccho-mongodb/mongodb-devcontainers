@@ -1,24 +1,30 @@
 services:
 
   typescript:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile.typescript
     volumes:
       - ../typescript:/workspace/typescript:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
     depends_on:
-      - mongo-database
+      mongo-database:
+        condition: service_healthy
+      init-db:
+        condition: service_completed_successfully
 
   python:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile.python
     volumes:
       - ../python:/workspace/python:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
     depends_on:
-      - mongo-database
+      mongo-database:
+        condition: service_healthy
+      init-db:
+        condition: service_completed_successfully
 
   golang:
     build:
@@ -28,7 +34,10 @@ services:
       - ../golang:/workspace/golang:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
     depends_on:
-      - mongo-database
+      mongo-database:
+        condition: service_healthy
+      init-db:
+        condition: service_completed_successfully
 
   java:
     build:
@@ -55,14 +64,21 @@ services:
     restart: unless-stopped
     volumes:
       - mongodb-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')", "--quiet"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
 
-# Uncomment to run sample data import.
   init-db:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile.mongodb-data
+    restart: on-failure
     depends_on:
-      - mongo-database
+      mongo-database:
+        condition: service_healthy
 
 volumes:
   mongodb-data:

@@ -25,4 +25,4 @@ RUN chmod 0440 /etc/sudoers.d/$USERNAME
 ARG PROJECT_DIR=/workspace/python
 WORKDIR $PROJECT_DIR
 USER $USERNAME
-ENV PYTHONPATH="${PYTHONPATH}:/workspace/python"
+ENV PYTHONPATH=/workspace/python
