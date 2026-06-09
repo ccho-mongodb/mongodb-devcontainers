@@ -21,7 +21,7 @@ RUN echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME
 RUN chmod 0440 /etc/sudoers.d/$USERNAME
 
 
-# Set the working directory, user, and Python interpreter path
+# Set the working directory and user
 ARG PROJECT_DIR=/workspace/python
 WORKDIR $PROJECT_DIR
 USER $USERNAME

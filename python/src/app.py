@@ -4,7 +4,7 @@ uri = "mongodb://mongo-database:27017"
 client = MongoClient(uri)
 
 try:
-    database = client.get_database("sample_data")
+    database = client.get_database("sample_mflix")
     movies = database.get_collection("movies")
 
     # Query for a movie that has the title 'Back to the Future'

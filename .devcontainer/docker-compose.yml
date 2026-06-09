@@ -47,7 +47,10 @@ services:
       - ../java:/workspace/java:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
     depends_on:
-      - mongo-database
+      mongo-database:
+        condition: service_healthy
+      init-db:
+        condition: service_completed_successfully
 
   ruby:
     build:
@@ -57,7 +60,10 @@ services:
       - ../ruby:/workspace/ruby:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
     depends_on:
-      - mongo-database
+      mongo-database:
+        condition: service_healthy
+      init-db:
+        condition: service_completed_successfully
 
   mongo-database:
     image: mongodb/mongodb-community-server:latest
