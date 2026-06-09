@@ -4,11 +4,11 @@
   "service": "ruby",
   "workspaceFolder": "/workspace/ruby/",
   "forwardPorts": [27017],
-  "postCreateCommand": "",
+  "postCreateCommand": "bundle install",
   "customizations": {
     "vscode": {
       "extensions": [
-        "mongodb.mongodb-vscode",
+        "mongodb.mongodb-vscode"
       ]
     }
   },

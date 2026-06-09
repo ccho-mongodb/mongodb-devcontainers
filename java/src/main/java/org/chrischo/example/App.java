@@ -15,7 +15,7 @@ public class App {
         String uri = "mongodb://mongo-database:27017/";
 
         try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("sample_data");
+            MongoDatabase database = mongoClient.getDatabase("sample_mflix");
             MongoCollection<Document> collection = database.getCollection("movies");
 
             Document doc = collection.find(eq("title", "Back to the Future")).first();

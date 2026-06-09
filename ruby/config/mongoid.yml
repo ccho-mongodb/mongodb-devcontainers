@@ -2,6 +2,6 @@ development:
   clients:
     # Default client configuration
     default:
-      database: sample_data
+      database: sample_mflix
       hosts:
         - mongo-database:27017

@@ -7,7 +7,9 @@ RUN apt-get update && apt-get install -y \
     sudo \
     && rm -rf /var/lib/apt/lists/*
 
-# Set the working directory, user, and Python interpreter path
+ARG USERNAME=vscode
+
+# Set the working directory and user
 ARG PROJECT_DIR=/workspace/ruby
 
 WORKDIR $PROJECT_DIR
